@@ -1,4 +1,4 @@
-=begin
+
 students = [
   {:name => "Dr. Hannibal Lecter", :cohort => :august},
   {:name => "Darth Vader", :cohort => :august},
@@ -12,7 +12,37 @@ students = [
   {:name => "Joffrey Baratheon", :cohort => :august},  
   {:name => "Norman Bates", :cohort => :august}
 ]
-=end
+
+
+def interactive_menu
+  # set variable equal to an empty array. Set outside the loop
+  # so it exists across many iterations, not just the first iteration
+  students = []
+  # repeat until the user exits
+  loop do
+  # print the menu of options and ask the user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+
+    # read user input and assign to a variable
+    selection = gets.chomp
+
+    # do what the user has asked
+    case selection
+
+      when "1"
+        students = input_students
+      when "2"
+        print_header
+        print(students)
+        print_footer(students)
+      else
+        puts "I don't know what you mean, try again"
+    end
+  end  
+end
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -47,8 +77,6 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
-students = input_students
+
 #nothing happens until we call the methods
-print_header
-print(students)
-print_footer(students)
+interactive_menu
